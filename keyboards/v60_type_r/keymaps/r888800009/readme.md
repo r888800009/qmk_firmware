@@ -6,3 +6,9 @@ Terminal and vim like
 ``` bash
 make v60_type_r:r888800009:flash
 ```
+
+### sent REISUB
+
+1. hold <kbd>fn</kbd> + <kbd>menu</kbd>, and tap <kbd>i</kbd> (SysRq) and <kbd>alt</kbd>
+lock the two keys.
+2. <kbd>reisub</kbd>

@@ -47,21 +47,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----------------------------------------------------------|
    * |     |   |   |End|   |   |   |PgU|Prt|Scl|Pau|  |   | Ins  |
    * |-----------------------------------------------------------|
-   * |      |Hme|   |PgD|   |   |Lft|Dwn|Up |Rig|   |   |        |
+   * |Caps  |Hme|   |PgD|   |   |Lft|Dwn|Up |Rig|   |   |        |
    * |-----------------------------------------------------------|
    * |        |   |   |   |   |VolD|VolU|Mut|   |   |   |        |
    * |-----------------------------------------------------------|
-   * |    |    |    |                        |    |    |    |    |
+   * |    |    |    |                        |    |    |Lock|    |
    * `-----------------------------------------------------------'
    */
   [1] = LAYOUT_60_ansi(
-	       KC_GRV,    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,     KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,   KC_F12,  KC_DEL, \
-	       KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_END,   KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_PGUP, KC_PSCR, KC_SLCK,  KC_PAUS, KC_TRNS,  KC_TRNS,          KC_INS, \
-	       KC_TRNS,   KC_HOME,  KC_TRNS,  KC_PGDN,  KC_TRNS,  KC_TRNS,  KC_LEFT,   KC_DOWN, KC_UP,   KC_RIGHT, KC_TRNS, KC_TRNS,           KC_TRNS,          \
-	       KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_VOLD,  KC_VOLU,   KC_MUTE, KC_TRNS, KC_TRNS,  KC_TRNS,           KC_TRNS,  \
-	       KC_TRNS,   KC_TRNS,  KC_TRNS,            KC_TRNS,                                                            KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS),
+	       KC_GRV,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,     KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,   KC_F12,  KC_DEL, \
+	       KC_TRNS,           KC_TRNS,  KC_TRNS,  KC_END,   KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_PGUP, KC_PSCR, KC_SLCK,  KC_PAUS, KC_TRNS,  KC_TRNS,          KC_INS, \
+	       LCTL_T(KC_CAPS),   KC_HOME,  KC_TRNS,  KC_PGDN,  KC_TRNS,  KC_TRNS,  KC_LEFT,   KC_DOWN, KC_UP,   KC_RIGHT, KC_TRNS, KC_TRNS,           KC_TRNS,          \
+	       KC_TRNS,           KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_VOLD,  KC_VOLU,   KC_MUTE, KC_TRNS, KC_TRNS,  KC_TRNS,           KC_TRNS,  \
+	       KC_TRNS,           KC_TRNS,  KC_TRNS,            KC_TRNS,                                                            KC_TRNS,  KC_TRNS, KC_LOCK, KC_TRNS),
 
 };
+
+uint32_t layer_state_set_user(uint32_t state) {
+  switch (biton32(state)) {
+    case 0:
+      // Hi-Z
+      DDRE  &= ~(1<<PE6);
+      PORTE &= ~(1<<PE6);
+      break;
+    case 1:
+      // output low
+      DDRE  |=  (1<<PE6);
+      PORTE &= ~(1<<PE6);
+      break;
+  }
+  return state;
+}
 
 void led_set_user(uint8_t usb_led) {
 
