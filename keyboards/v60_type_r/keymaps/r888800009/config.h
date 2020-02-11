@@ -17,6 +17,7 @@
 
 // place overrides here
 
+#define TAPPING_TOGGLE 2
 
 #ifdef V60_POLESTAR
 #undef V60_POLESTAR

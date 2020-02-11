@@ -7,6 +7,9 @@ Terminal and vim like
 make v60_type_r:r888800009:flash
 ```
 
+### Lock Fn
+two taps right fn key
+
 ### sent REISUB
 
 1. hold <kbd>fn</kbd> + <kbd>menu</kbd>, and tap <kbd>i</kbd> (SysRq) and <kbd>alt</kbd>
