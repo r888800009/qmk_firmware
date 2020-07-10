@@ -12,6 +12,6 @@ two taps right fn key
 
 ### sent REISUB
 
-1. hold <kbd>fn</kbd> + <kbd>menu</kbd>, and tap <kbd>i</kbd> (SysRq) and <kbd>alt</kbd>
+1. hold <kbd>fn</kbd> + <kbd>menu</kbd>, and tap <kbd>alt</kbd> and <kbd>i</kbd> (SysRq) 
 lock the two keys.
 2. <kbd>reisub</kbd>
